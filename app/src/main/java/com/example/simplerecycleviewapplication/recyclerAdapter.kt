@@ -25,7 +25,6 @@ class recyclerAdapter : RecyclerView.Adapter<LineHolder>(){
         notifyItemChanged(position)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineHolder {
         return LineHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_view_holder,parent,false))
     }
@@ -35,10 +34,9 @@ class recyclerAdapter : RecyclerView.Adapter<LineHolder>(){
     }
 
     override fun onBindViewHolder(holder: LineHolder, position: Int) {
+
         holder.mainText.text = s
         holder.secondText.text = number.toString()
         number++
     }
-
-
 }
