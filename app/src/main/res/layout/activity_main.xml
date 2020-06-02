@@ -41,6 +41,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:scrollbars="vertical"
         tools:listitem="@layout/main_view_holder"/>
 
 </LinearLayout>

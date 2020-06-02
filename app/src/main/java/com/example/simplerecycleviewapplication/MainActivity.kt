@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var myAdapter: recyclerAdapter
+    lateinit var myAdapter: RecyclerAdapter
     lateinit var rv: RecyclerView
-
-    val text = "numero: "
-    var number = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,24 +19,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRecycler(){
-        rv = findViewById<RecyclerView>(R.id.recycler_view)
+        rv = findViewById(R.id.recycler_view)
         rv.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            myAdapter = recyclerAdapter()
+            layoutManager = LinearLayoutManager(
+                this@MainActivity,LinearLayoutManager.VERTICAL, false)
+            myAdapter = RecyclerAdapter()
             adapter = myAdapter
         }
     }
 
     private fun initListeners(){
         btn_add.setOnClickListener {
-            val model = viewData(text,number.toString())
-            myAdapter.updateList(model)
-            number++
+            myAdapter.addNumber()
+            myAdapter.notifyItemInserted(myAdapter.itemCount)
         }
 
         btn_remove.setOnClickListener {
-            if((myAdapter.itemCount -1) >0){
-                myAdapter.removeItem(myAdapter.itemCount-1)
+            if((myAdapter.itemCount -1) >= 0) {
+                myAdapter.removeNumber(myAdapter.itemCount-1)
             }
         }
     }
